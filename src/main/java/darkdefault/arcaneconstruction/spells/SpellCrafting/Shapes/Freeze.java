@@ -41,8 +41,8 @@ public class Freeze extends SimpleDefaultModelShape {
                     blockPos.getX() + 0.5,
                     blockPos.getY() + 0.5,
                     blockPos.getZ() + 0.5,
-                    SoundEvents.ITEM_FIRECHARGE_USE,
-                    SoundCategory.NEUTRAL,
+                    SoundEvents.ENTITY_PLAYER_HURT_FREEZE,
+                    SoundCategory.PLAYERS,
                     1.0f,
                     pitch
             );
@@ -88,7 +88,7 @@ public class Freeze extends SimpleDefaultModelShape {
         duration = incrementFromAugments(duration, 40, Duration.class, module);
 
         if (radius == 0) {
-            target.setFireTicks(duration + 40);
+            target.setFrozenTicks(duration + 40);
             return;
         }
 
@@ -100,8 +100,8 @@ public class Freeze extends SimpleDefaultModelShape {
                 center.getX() + 0.5,
                 center.getY() + 0.5,
                 center.getZ() + 0.5,
-                SoundEvents.ITEM_FIRECHARGE_USE,
-                SoundCategory.NEUTRAL,
+                SoundEvents.ENTITY_PLAYER_HURT_FREEZE,
+                SoundCategory.PLAYERS,
                 1.0f,
                 pitch
         );
@@ -119,7 +119,8 @@ public class Freeze extends SimpleDefaultModelShape {
 
                         if (world.getBlockState(targetPos).isOf(Blocks.AIR)) {
 
-                            world.setBlockState(targetPos,AbstractFireBlock.getState(world,targetPos));
+                            world.setBlockState(targetPos, Blocks.FROSTED_ICE.getDefaultState());
+
                         }
 
                     }
@@ -148,7 +149,7 @@ public class Freeze extends SimpleDefaultModelShape {
             );
 
             if (distanceSq <= radius * radius) {
-                t.setFireTicks(duration+40);
+                t.setFrozenTicks(duration+40);
 
             }
         }
@@ -175,8 +176,8 @@ public class Freeze extends SimpleDefaultModelShape {
                     blockPos.getX() + 0.5,
                     blockPos.getY() + 0.5,
                     blockPos.getZ() + 0.5,
-                    SoundEvents.ITEM_FIRECHARGE_USE,
-                    SoundCategory.NEUTRAL,
+                    SoundEvents.ENTITY_PLAYER_HURT_FREEZE,
+                    SoundCategory.PLAYERS,
                     1.0f,
                     pitch
             );

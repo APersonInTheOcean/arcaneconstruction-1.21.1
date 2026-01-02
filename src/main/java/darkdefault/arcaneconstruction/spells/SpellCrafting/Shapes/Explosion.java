@@ -66,7 +66,7 @@ public class Explosion extends SimpleDefaultModelShape {
                 blockPos.getY() + 0.5,
                 blockPos.getZ() + 0.5,
                 SoundEvents.ENTITY_GENERIC_EXPLODE,
-                SoundCategory.NEUTRAL,
+                SoundCategory.PLAYERS,
                 1.0f,
                 pitch
         );
@@ -141,7 +141,7 @@ public class Explosion extends SimpleDefaultModelShape {
                 blockPos.getY() + 0.5,
                 blockPos.getZ() + 0.5,
                 SoundEvents.ENTITY_GENERIC_EXPLODE,
-                SoundCategory.NEUTRAL,
+                SoundCategory.PLAYERS,
                 1.0f,
                 pitch
         );

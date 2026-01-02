@@ -33,7 +33,7 @@ public class Fire extends SimpleDefaultModelShape {
             World world =  entity.getWorld();
 
             int radius = 0;
-            radius = incrementFromAugments(radius,1, Range.class,module);
+            radius = incrementFromAugments(radius,1, AOE.class,module);
 
         float pitch = 1.5f - (0.1f*radius);
         world.playSound(
@@ -42,7 +42,7 @@ public class Fire extends SimpleDefaultModelShape {
                 blockPos.getY() + 0.5,
                 blockPos.getZ() + 0.5,
                 SoundEvents.ITEM_FIRECHARGE_USE,
-                SoundCategory.NEUTRAL,
+                SoundCategory.PLAYERS,
                 1.0f,
                 pitch
         );
@@ -69,7 +69,7 @@ public class Fire extends SimpleDefaultModelShape {
             }
 
         int duration = 0;
-        duration = incrementFromAugments(duration, 40, AOE.class, module);
+        duration = incrementFromAugments(duration, 40, Duration.class, module);
         radius = (int )(radius * 1.5);
 
 
@@ -130,7 +130,7 @@ public class Fire extends SimpleDefaultModelShape {
                 center.getY() + 0.5,
                 center.getZ() + 0.5,
                 SoundEvents.ITEM_FIRECHARGE_USE,
-                SoundCategory.NEUTRAL,
+                SoundCategory.PLAYERS,
                 1.0f,
                 pitch
         );
@@ -210,7 +210,7 @@ public class Fire extends SimpleDefaultModelShape {
                     blockPos.getY() + 0.5,
                     blockPos.getZ() + 0.5,
                     SoundEvents.ITEM_FIRECHARGE_USE,
-                    SoundCategory.NEUTRAL,
+                    SoundCategory.PLAYERS,
                     1.0f,
                     pitch
             );
