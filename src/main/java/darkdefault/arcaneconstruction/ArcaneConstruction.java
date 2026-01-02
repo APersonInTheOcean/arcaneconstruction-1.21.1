@@ -23,6 +23,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.MinecraftServer;
@@ -36,6 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static darkdefault.arcaneconstruction.util.SigilData.addMana;
 import static darkdefault.arcaneconstruction.util.SigilData.setMana;
@@ -171,6 +173,28 @@ public class ArcaneConstruction implements ModInitializer {
 			nbt.remove(ArcaneConstruction.castingProjectileBoolNbtKey);
 		}
 
+		if (Break.isMultiBreakActive(((IEntityDataSaver) player))) {
+			for (int i=0; i <= 1; i++){
+				ThreadLocalRandom rand = ThreadLocalRandom.current();
+
+				float random = 0.5f;
+
+				double ox = rand.nextDouble(-random, random);
+				double oy = rand.nextDouble(-random, random);
+				double oz = rand.nextDouble(-random, random);
+
+
+
+				player.getWorld().addParticle(
+						ParticleTypes.SNOWFLAKE,
+						player.getX() + ox,
+						player.getY() + oy,
+						player.getZ() + oz,
+						0, 0.0, 0.0
+				);
+			}
+
+		}
 
 
 
