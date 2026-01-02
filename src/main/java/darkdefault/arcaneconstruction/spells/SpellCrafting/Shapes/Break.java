@@ -148,7 +148,7 @@ public class Break extends SimpleShape {
         int radius = getMultiBreakAmplifier(player);
 
         if (getMiningSide(player)==Direction.DOWN
-                ||getMiningSide(player)==Direction.UP
+            ||getMiningSide(player)==Direction.UP
         ){
 
 
