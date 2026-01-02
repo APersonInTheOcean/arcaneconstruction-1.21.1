@@ -69,10 +69,10 @@ public class SigilHud implements HudRenderCallback{
 
 
         //     DEBUG MANA
-        TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-        int width = client.getWindow().getScaledWidth()/2;
-        int height = client.getWindow().getScaledHeight() / 5;
-        drawContext.drawCenteredTextWithShadow(textRenderer, Text.of("Mana: "+ String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.manaNbtKey)) + "/" + String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.maxManaNbtKey))), width , height, 0xFFFFFF);
+//        TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+//        int width = client.getWindow().getScaledWidth()/2;
+//        int height = client.getWindow().getScaledHeight() / 5;
+//        drawContext.drawCenteredTextWithShadow(textRenderer, Text.of("Mana: "+ String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.manaNbtKey)) + "/" + String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.maxManaNbtKey))), width , height, 0xFFFFFF);
 
 
         // DEBUG SIGIL COOLDOWN
