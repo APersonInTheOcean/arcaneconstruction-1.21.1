@@ -75,7 +75,7 @@ public class ModMessages {
             return ID;
         }
     }
-    public record ManaSyncS2CPayload(int amount, UUID uuid) implements CustomPayload {
+    public record ManaSyncS2CPayload(int amount, int maxAmount, UUID uuid) implements CustomPayload {
 
         public static final Id<ManaSyncS2CPayload> ID =
                 new Id<>(MANASYNC_ID);
@@ -83,8 +83,9 @@ public class ModMessages {
         public static final PacketCodec<RegistryByteBuf, ManaSyncS2CPayload> CODEC =
                 PacketCodec.tuple(
                         PacketCodecs.INTEGER, ManaSyncS2CPayload::amount,
+                        PacketCodecs.INTEGER, ManaSyncS2CPayload::maxAmount,
                         PacketCodecs.STRING, p -> p.uuid().toString(),
-                        (amount, uuidStr) -> new ManaSyncS2CPayload(amount, UUID.fromString(uuidStr))
+                        (amount,maxAmount, uuidStr) -> new ManaSyncS2CPayload(amount,maxAmount, UUID.fromString(uuidStr))
                 );
 
         @Override

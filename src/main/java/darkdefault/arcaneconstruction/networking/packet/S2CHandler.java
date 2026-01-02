@@ -25,8 +25,6 @@ public class S2CHandler {
         IEntityDataSaver target = (IEntityDataSaver) (player.getWorld().getPlayerByUuid(payload.uuid()));
 
         assert target != null;
-        target.getPersistentData().put(ArcaneConstruction.manaNbtKey,payload.nbt().get(ArcaneConstruction.manaNbtKey));
-        target.getPersistentData().put(ArcaneConstruction.maxManaNbtKey,payload.nbt().get(ArcaneConstruction.maxManaNbtKey));
         target.getPersistentData().put(ArcaneConstruction.sigilsNbtKey,payload.nbt().get(ArcaneConstruction.sigilsNbtKey));
         target.getPersistentData().put(ArcaneConstruction.castBoolNbtKey, payload.nbt().get(ArcaneConstruction.castBoolNbtKey));
         target.getPersistentData().put(ArcaneConstruction.castingProjectileBoolNbtKey, payload.nbt().get(ArcaneConstruction.castingProjectileBoolNbtKey));

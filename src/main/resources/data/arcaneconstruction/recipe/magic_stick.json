@@ -3,22 +3,18 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "arcaneconstruction:arcanite"
+      "item": "minecraft:amethyst_shard"
     },
     "!": {
       "item": "minecraft:stick"
-    },
-    "%": {
-      "item": "minecraft:gold_ingot"
     }
   },
   "pattern": [
     "#",
-    "!",
-    "%"
+    "!"
   ],
   "result": {
     "count": 1,
-    "id": "arcaneconstruction:crude_wand"
+    "id": "arcaneconstruction:magic_stick"
   }
 }

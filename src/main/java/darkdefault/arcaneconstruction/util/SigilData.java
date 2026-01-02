@@ -165,7 +165,7 @@ public class SigilData {
         if (!((PlayerEntity) player).getWorld().isClient()) {
             ServerPlayerEntity p = (ServerPlayerEntity) player;
             UUID playerUuid = p.getUuid();
-            ModMessages.ManaSyncS2CPayload manaSyncS2CPayload = new ModMessages.ManaSyncS2CPayload(persistentData.getInt(ArcaneConstruction.manaNbtKey), playerUuid);
+            ModMessages.ManaSyncS2CPayload manaSyncS2CPayload = new ModMessages.ManaSyncS2CPayload(persistentData.getInt(ArcaneConstruction.manaNbtKey),getMaxMana(player), playerUuid);
 
             MinecraftServer server = p.getServer();
             assert server != null;
@@ -184,5 +184,17 @@ public class SigilData {
             persistentData = player.getPersistentData();
         }
         persistentData.putInt(ArcaneConstruction.manaNbtKey, amount);
+        if (!((PlayerEntity) player).getWorld().isClient()) {
+            ServerPlayerEntity p = (ServerPlayerEntity) player;
+            UUID playerUuid = p.getUuid();
+            ModMessages.ManaSyncS2CPayload manaSyncS2CPayload = new ModMessages.ManaSyncS2CPayload(getMana(player),getMaxMana(player), playerUuid);
+
+            MinecraftServer server = p.getServer();
+            assert server != null;
+
+            for (ServerPlayerEntity otherPlayer : server.getPlayerManager().getPlayerList()) {
+                ServerPlayNetworking.send(otherPlayer, manaSyncS2CPayload);
+            }
+        }
     }
  }

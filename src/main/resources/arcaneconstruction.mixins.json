@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ExampleMixin",
+    "ItemEntityMixin",
     "ModEntityDataSaver",
     "PlayerEntityMixin"
   ],
@@ -15,8 +16,8 @@
   },
   "client": [
     "BipedEntityModelMixin",
-    "PlayerEntityRendererMixin",
     "ItemRendererMixin",
-    "ModelLoaderMixin"
+    "ModelLoaderMixin",
+    "PlayerEntityRendererMixin"
   ]
 }

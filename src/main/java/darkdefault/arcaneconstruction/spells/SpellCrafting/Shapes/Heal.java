@@ -4,7 +4,7 @@ import darkdefault.arcaneconstruction.entity.SpellProjectileEntity;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.*;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.Augments.AOE;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.Augments.Duration;
-import net.minecraft.block.AbstractFireBlock;
+import darkdefault.arcaneconstruction.spells.SpellCrafting.Augments.Power;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -20,16 +20,14 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Freeze extends SimpleDefaultModelShape {
-
-    private int baseDuration = 400;
-    private int durationAugmentIncrease = 200;
+public class Heal extends SimpleDefaultModelShape {
+    private int baseHeal = 6;
+    private int powerAugmentIncrease = 2;
     @Override
     public void onBlockHit(BlockHitResult blockHitResult, Spell spell, SpellProjectileEntity entity, SpellModule module) {
         World world = entity.getWorld();
@@ -43,33 +41,16 @@ public class Freeze extends SimpleDefaultModelShape {
                 blockPos.getX() + 0.5,
                 blockPos.getY() + 0.5,
                 blockPos.getZ() + 0.5,
-                SoundEvents.ENTITY_PLAYER_HURT_FREEZE,
+                SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,
                 SoundCategory.PLAYERS,
                 1.0f,
                 pitch
         );
         if(world.isClient) return;
+        
 
-        for (int x = -radius; x <= radius; x++) {
-            for (int z = -radius; z <= radius; z++) {
-
-                double distance = Math.sqrt(x * x + z * z);
-
-                if (distance <= radius) {
-                    BlockPos targetPos = blockPos.add(x, 0, z);
-
-                    if (world.getBlockState(targetPos).isOf(Blocks.WATER)) {
-
-                        world.setBlockState(targetPos, Blocks.FROSTED_ICE.getDefaultState());
-
-                    }
-
-                }
-            }
-        }
-
-        int duration = baseDuration;
-        duration = incrementFromAugments(duration, durationAugmentIncrease, Duration.class, module);
+        int healAmount = baseHeal;
+        healAmount = incrementFromAugments(healAmount, powerAugmentIncrease, Power.class, module);
 
 
         radius = (int )(radius * 1.5);
@@ -91,8 +72,14 @@ public class Freeze extends SimpleDefaultModelShape {
             );
 
             if (distanceSq <= radius * radius) {
-                t.setFrozenTicks(duration);
-                t.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,duration/2,1));
+                t.heal(healAmount);
+                t.getWorld().addParticle(
+                        ParticleTypes.HEART,
+                        t.getX(),
+                        t.getY(),
+                        t.getZ(),
+                        1, 0.0, 1.0
+                );
 
 
             }
@@ -106,25 +93,29 @@ public class Freeze extends SimpleDefaultModelShape {
                             SpellProjectileEntity entity,
                             SpellModule module) {
 
-        Entity target = entityHitResult.getEntity();
-        World world = target.getWorld();
-        BlockPos center = target.getBlockPos();
+        Entity targetOg = entityHitResult.getEntity();
+        World world = targetOg.getWorld();
+        BlockPos center = targetOg.getBlockPos();
 
 
-        if (target==entity.getOwner())return;
+        if (targetOg==entity.getOwner())return;
+        if(!(targetOg instanceof LivingEntity target)) return;
 
         int radius = 0;
         radius = incrementFromAugments(radius,2, AOE.class,module);
 
-        int duration = baseDuration;
-        duration = incrementFromAugments(duration, durationAugmentIncrease, Duration.class, module);
+        int healAmount = baseHeal;
+        healAmount = incrementFromAugments(healAmount, powerAugmentIncrease, Power.class, module);
 
         if (radius == 0) {
-            target.setFrozenTicks(duration);
-            if(target instanceof PlayerEntity playerEntity){
-                playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,duration/2,1));
-
-            }
+            target.heal(healAmount);
+            target.getWorld().addParticle(
+                    ParticleTypes.HEART,
+                    target.getX(),
+                    target.getY(),
+                    target.getZ(),
+                    1, 0.0, 1.0
+            );
 
             return;
         }
@@ -137,7 +128,7 @@ public class Freeze extends SimpleDefaultModelShape {
                 center.getX() + 0.5,
                 center.getY() + 0.5,
                 center.getZ() + 0.5,
-                SoundEvents.ENTITY_PLAYER_HURT_FREEZE,
+                SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,
                 SoundCategory.PLAYERS,
                 1.0f,
                 pitch
@@ -145,25 +136,6 @@ public class Freeze extends SimpleDefaultModelShape {
 
         if (world.isClient) return;
 
-        for (int x = -radius; x <= radius; x++) {
-            for (int y = -radius; y <= radius; y++) {
-                for (int z = -radius; z <= radius; z++) {
-
-                    double distance = Math.sqrt(x * x + y * y + z * z);
-
-                    if (distance <= radius) { // Only remove blocks inside the sphere
-                        BlockPos targetPos = center.add(x, y, z);
-
-                        if (world.getBlockState(targetPos).isOf(Blocks.AIR)) {
-
-                            world.setBlockState(targetPos, Blocks.FROSTED_ICE.getDefaultState());
-
-                        }
-
-                    }
-                }
-            }
-        }
 
 
 
@@ -186,10 +158,14 @@ public class Freeze extends SimpleDefaultModelShape {
             );
 
             if (distanceSq <= radius * radius) {
-                t.setFrozenTicks(duration);
-                t.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,duration/2,1));
-
-
+                t.heal(healAmount);
+                t.getWorld().addParticle(
+                        ParticleTypes.HEART,
+                        t.getX(),
+                        t.getY(),
+                        t.getZ(),
+                        1, 0.0, 1.0
+                );
             }
         }
 
@@ -198,8 +174,8 @@ public class Freeze extends SimpleDefaultModelShape {
 
     @Override
     public void onSelfCast(Spell s, ServerPlayerEntity player, SpellModule module) {
-        int duration = baseDuration;
-        duration = incrementFromAugments(duration, durationAugmentIncrease, Duration.class, module);
+        int healAmount = baseHeal;
+        healAmount = incrementFromAugments(healAmount, powerAugmentIncrease, Power.class, module);
         int radius = 0;
         radius = incrementFromAugments(radius, 2,AOE.class, module);
 
@@ -214,7 +190,7 @@ public class Freeze extends SimpleDefaultModelShape {
                     blockPos.getX() + 0.5,
                     blockPos.getY() + 0.5,
                     blockPos.getZ() + 0.5,
-                    SoundEvents.ENTITY_PLAYER_HURT_FREEZE,
+                    SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,
                     SoundCategory.PLAYERS,
                     1.0f,
                     pitch
@@ -222,7 +198,15 @@ public class Freeze extends SimpleDefaultModelShape {
             //Server
 
             if (radius == 0){
-                player.setFrozenTicks(duration);
+                player.heal(healAmount);
+                player.getWorld().addParticle(
+                        ParticleTypes.HEART,
+                        player.getX(),
+                        player.getY(),
+                        player.getZ(),
+                        1, 0.0, 1.0
+                );
+
 
 
             }
@@ -243,8 +227,14 @@ public class Freeze extends SimpleDefaultModelShape {
                     );
 
                     if (distanceSq <= radius * radius) {
-                        t.setFrozenTicks(duration);
-                        t.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,duration/2,1));
+                        t.heal(healAmount);
+                        t.getWorld().addParticle(
+                                ParticleTypes.HEART,
+                                t.getX(),
+                                t.getY(),
+                                t.getZ(),
+                                1, 0.0, 1.0
+                        );
 
                     }
                 }
@@ -257,8 +247,6 @@ public class Freeze extends SimpleDefaultModelShape {
     @Override
     public void getTrailEffect(SpellProjectileEntity entity, SpellModule module) {
 
-        World world = entity.getWorld();
-        BlockPos blockPos = entity.getBlockPos();
         if (entity.getWorld().isClient()) {
             for (int i=0; i <= 1; i++){
                 ThreadLocalRandom rand = ThreadLocalRandom.current();
@@ -272,7 +260,7 @@ public class Freeze extends SimpleDefaultModelShape {
 
 
                 entity.getWorld().addParticle(
-                        ParticleTypes.SNOWFLAKE,
+                        ParticleTypes.HEART,
                         entity.getX() + ox,
                         entity.getY() + oy,
                         entity.getZ() + oz,
@@ -281,33 +269,6 @@ public class Freeze extends SimpleDefaultModelShape {
             }
         }
 
-
-        if(world.isClient) return;
-
-        if (world.getBlockState(blockPos).isOf(Blocks.WATER)){
-            BlockHitResult blockHitResult = new BlockHitResult(blockPos.toCenterPos(), Direction.UP,blockPos,true);
-
-
-
-            if ( entity.getNoClipCount() > 0) {
-
-                Spell s = entity.getSpell();
-
-                for (SpellModule currentModule: s.getModules()) {
-                    currentModule.getShape().onBlockHit(blockHitResult, s, entity, currentModule);
-
-
-                }
-
-
-            }
-
-            //SERVER ONLY
-            entity.addNoClipCount(-1);
-            if (entity.getNoClipCount() == 0) {
-                entity.discard();
-            }
-        }
     }
     public int incrementFromAugments(int valueToIncrement, int amountToIncrement, Class<? extends Augment> augmentToCheck, SpellModule currentModule) {
         int howMuchToIncrement = valueToIncrement;
@@ -321,17 +282,17 @@ public class Freeze extends SimpleDefaultModelShape {
 
     @Override
     public String getSequence() {
-        return "e";
+        return "ei";
     }
 
     @Override
     public String getName() {
-        return "Freeze";
+        return "Heal";
     }
 
     @Override
     public int getColor() {
-        return ColorHelper.Argb.getArgb( 126, 208, 230);
+        return ColorHelper.Argb.getArgb( 168, 50, 52);
     }
 
 }

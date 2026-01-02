@@ -3,6 +3,7 @@ package darkdefault.arcaneconstruction;
 import darkdefault.arcaneconstruction.block.ModBlocks;
 import darkdefault.arcaneconstruction.entity.ModEntities;
 import darkdefault.arcaneconstruction.item.ModItems;
+import darkdefault.arcaneconstruction.item.WandItem;
 import darkdefault.arcaneconstruction.networking.ModMessages;
 import darkdefault.arcaneconstruction.particle.ModParticles;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.Augments.*;
@@ -27,7 +28,10 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 import static darkdefault.arcaneconstruction.util.SigilData.addMana;
+import static darkdefault.arcaneconstruction.util.SigilData.setMana;
 
 public class ArcaneConstruction implements ModInitializer {
 
@@ -41,6 +45,7 @@ public class ArcaneConstruction implements ModInitializer {
 	public static final String sigilCooldownNbtKey = "sigilCooldown";
 	public static final String sigilCooldownOverNbtKey = "sigilCooldownOverBool";
 	public static final String sigilCooldownTimerNbtKey = "sigilCooldownTimer";
+	private static final String lastMainHandItemNbtKey = "lastMainHandItemNbtKey";
 
 
 
@@ -55,6 +60,11 @@ public class ArcaneConstruction implements ModInitializer {
 
 	public static final TagKey<Item> WANDS =
 			TagKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "wands"));
+
+	public static final int baseManaPlayer = 100;
+	public static final int baseSigilCooldownPlayer = 20;
+
+
 
 
 	@Override
@@ -82,6 +92,7 @@ public class ArcaneConstruction implements ModInitializer {
 		SpellModule.SpellCraftingRegistry.registerShape(new Freeze());
 		SpellModule.SpellCraftingRegistry.registerShape(new Wind());
 		SpellModule.SpellCraftingRegistry.registerShape(new Effect());
+		SpellModule.SpellCraftingRegistry.registerShape(new Heal());
 
 
 
@@ -105,33 +116,12 @@ public class ArcaneConstruction implements ModInitializer {
 			// Set MaxMana
 			if(playerServer.getServer() == null) return;
 			IEntityDataSaver player = (IEntityDataSaver) playerServer;
-			SigilData.setMaxMana(player, 100);
-			// Set SigilCooldown
-			SigilData.setSigilCooldown(player, 20);
+//
 
 
 
-			//Mana Regen
-			if (SigilData.getMana(player)< SigilData.getMaxMana(player)
-			) {
-				if (playerServer.getServer().getTicks() % 5 == 0) {
-					addMana(player, getManaRegen(player));
 
 
-				}
-			}
-			//Sigil Cooldown Timer
-			if (!SigilData.isSigilCooldownOver(player)
-			){
-				if (SigilData.getSigilCooldownTimer(player) < SigilData.getSigilCooldown(player)){
-					SigilData.addSigilCooldownTimer(player, 1);
-				}
-				else {
-					SigilData.addSigilCooldownTimer(player, -SigilData.getSigilCooldown(player));
-					SigilData.setSigilCooldownOver(player,true);
-				}
-
-			}
 
 
 
@@ -144,6 +134,7 @@ public class ArcaneConstruction implements ModInitializer {
 
 	public static void onPlayerTick(PlayerEntity player) {
 
+		IEntityDataSaver playerWithData = ((IEntityDataSaver)player);
 		NbtCompound nbt = ((IEntityDataSaver)player).getPersistentData();
 
 
@@ -162,6 +153,61 @@ public class ArcaneConstruction implements ModInitializer {
 		if (player.getWorld().isClient()) return;
 
 
+		//Only do this when mainhand changes, avoids lag.
+		String playerMainhand = String.valueOf(player.getMainHandStack().getItem().getName());
+		if(!Objects.equals(playerMainhand, nbt.getString(ArcaneConstruction.lastMainHandItemNbtKey))){
+
+			if(player.getMainHandStack().getItem() instanceof WandItem wand){
+				// Set MaxMana
+				SigilData.setMaxMana(playerWithData, baseManaPlayer + wand.getMaxManaAdded());
+
+				// Set SigilCooldown
+				SigilData.setSigilCooldown(playerWithData, baseSigilCooldownPlayer + wand.getSigilCooldownChange());
+
+			}
+			else {
+				// Set MaxMana
+				SigilData.setMaxMana(playerWithData, baseManaPlayer);
+				// Set SigilCooldown
+				SigilData.setSigilCooldown(playerWithData, baseSigilCooldownPlayer );
+
+			}
+
+			// Reset PlayerLastMainhand
+			nbt.putString(ArcaneConstruction.lastMainHandItemNbtKey,playerMainhand);
+		}
+
+
+
+
+		//Mana Regen
+		if (SigilData.getMana(playerWithData)< SigilData.getMaxMana(playerWithData)
+		) {
+			if (((ServerPlayerEntity)player).getServer().getTicks() % 5 == 0) {
+				addMana(playerWithData, getManaRegen(playerWithData));
+
+
+			}
+		} else if (SigilData.getMana(playerWithData)> SigilData.getMaxMana(playerWithData)) {
+			if (((ServerPlayerEntity)player).getServer().getTicks() % 5 == 0) {
+				setMana(playerWithData, SigilData.getMaxMana(playerWithData));
+
+
+			}
+		}
+
+		//Sigil Cooldown Timer
+		if (!SigilData.isSigilCooldownOver(playerWithData)
+		){
+			if (SigilData.getSigilCooldownTimer(playerWithData) < SigilData.getSigilCooldown(playerWithData)){
+				SigilData.addSigilCooldownTimer(playerWithData, 1);
+			}
+			else {
+				SigilData.addSigilCooldownTimer(playerWithData, -SigilData.getSigilCooldown(playerWithData));
+				SigilData.setSigilCooldownOver(playerWithData,true);
+			}
+
+		}
 
 		//While casting effects
         if (nbt.getBoolean(ArcaneConstruction.castBoolNbtKey)){

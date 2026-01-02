@@ -13,25 +13,21 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-public class CrudeWandItem extends Item {
+public class CrudeWandItem extends WandItem {
 
     public CrudeWandItem(Item.Settings settings) {
         super(settings.rarity(Rarity.UNCOMMON));
     }
 
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
-        return 0;
+    @Override
+    public int getManaDiscount() {
+        return 5;
     }
-
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.NONE;
+    @Override
+    public int getMaxManaAdded() {
+        return 100;
     }
-
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-//        this.playStopUsingSound(user);
-        return stack;
-    }
-
-    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+    public int getSigilCooldownChange(){
+        return -10;
     }
 }

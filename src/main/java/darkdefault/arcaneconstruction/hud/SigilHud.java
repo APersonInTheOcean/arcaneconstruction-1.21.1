@@ -2,6 +2,7 @@ package darkdefault.arcaneconstruction.hud;
 
 import darkdefault.arcaneconstruction.ArcaneConstruction;
 import darkdefault.arcaneconstruction.util.IEntityDataSaver;
+import darkdefault.arcaneconstruction.util.SigilData;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -68,10 +69,10 @@ public class SigilHud implements HudRenderCallback{
 
 
         //     DEBUG MANA
-//        TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-//        int width = client.getWindow().getScaledWidth()/2;
-//        int height = client.getWindow().getScaledHeight() / 5;
-//        drawContext.drawCenteredTextWithShadow(textRenderer, Text.of("Mana: "+ String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.manaNbtKey))), width , height, 0xFFFFFF);
+        TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+        int width = client.getWindow().getScaledWidth()/2;
+        int height = client.getWindow().getScaledHeight() / 5;
+        drawContext.drawCenteredTextWithShadow(textRenderer, Text.of("Mana: "+ String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.manaNbtKey)) + "/" + String.valueOf(p.getPersistentData().getInt(ArcaneConstruction.maxManaNbtKey))), width , height, 0xFFFFFF);
 
 
         // DEBUG SIGIL COOLDOWN
@@ -91,9 +92,10 @@ public class SigilHud implements HudRenderCallback{
         int textureHeight = 16 * scale;
         int textureX = screenWidth - textureWidth;
         int textureY = screenHeight-textureHeight ;
-        int amountOfMana = p.getPersistentData().getInt(ArcaneConstruction.manaNbtKey);
+        int amountOfMana = SigilData.getMana(p);
+        int maxMana = SigilData.getMaxMana(p);
 
-        drawContext.drawTexture(MANABAR_FILL, textureX, textureY, 0, 0, (textureWidth*amountOfMana)/(100), textureHeight, textureWidth, textureHeight);
+        drawContext.drawTexture(MANABAR_FILL, textureX, textureY, 0, 0, (textureWidth*amountOfMana)/Math.max(maxMana,1), textureHeight, textureWidth, textureHeight);
 
         drawContext.drawTexture(MANABAR, textureX, textureY, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
     }

@@ -35,6 +35,9 @@ public abstract class ItemRendererMixin {
         if (stack.getItem() == ModItems.CRUDE_WAND && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(ArcaneConstruction.MOD_ID, "crude_wand")));
         }
+        if (stack.getItem() == ModItems.MAGIC_STICK && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(ArcaneConstruction.MOD_ID, "magic_stick")));
+        }
 
         return bakedModel;
     }

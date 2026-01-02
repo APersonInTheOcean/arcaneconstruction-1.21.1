@@ -18,5 +18,7 @@ public abstract class ModelLoaderMixin {
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/model/ModelLoader;loadItemModel(Lnet/minecraft/client/util/ModelIdentifier;)V", ordinal = 1))
     private void onInit(CallbackInfo ci) {
         this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(ArcaneConstruction.MOD_ID, "crude_wand_3d")));
+        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(ArcaneConstruction.MOD_ID, "magic_stick_3d")));
+
     }
 }

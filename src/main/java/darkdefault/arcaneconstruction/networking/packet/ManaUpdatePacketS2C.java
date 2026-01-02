@@ -19,6 +19,8 @@ public class ManaUpdatePacketS2C {
 
         assert target != null;
         target.getPersistentData().putInt(ArcaneConstruction.manaNbtKey,payload.amount());
+        target.getPersistentData().putInt(ArcaneConstruction.maxManaNbtKey,payload.maxAmount());
+
 
     }
 }

@@ -9,8 +9,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems{
-    public static final Item ARCANITE = registerItem("arcanite", new Item(new Item.Settings()));
+    public static final Item ARCANITE = registerItem("arcanite", new ArcaniteItem(new Item.Settings()));
     public static final Item CRUDE_WAND = registerItem("crude_wand", new CrudeWandItem(new Item.Settings().maxCount(1)));
+    public static final Item MAGIC_STICK = registerItem("magic_stick", new MagicStickItem(new Item.Settings().maxCount(1)));
+
 
 
     private static Item registerItem(String name, Item item) {
@@ -25,6 +27,9 @@ public class ModItems{
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             entries.add(CRUDE_WAND);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.add(MAGIC_STICK);
         });
     }
 }
