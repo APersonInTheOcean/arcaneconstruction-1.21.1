@@ -2,10 +2,10 @@
 	"schemaVersion": 1,
 	"id": "arcaneconstruction",
 	"version": "${version}",
-	"name": "arcaneconstruction",
+	"name": "Arcane Construction",
 	"description": "Arcane Construction, a mod where spells are hard.",
 	"authors": [
-		"Me!"
+		"DarkDefault"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"darkdefault.arcaneconstruction.Arcaneconstruction"
+			"darkdefault.arcaneconstruction.ArcaneConstruction"
 		],
 		"fabric-datagen": [
-			"darkdefault.arcaneconstruction.ArcaneconstructionDataGenerator"
+			"darkdefault.arcaneconstruction.ArcaneConstructionDataGenerator"
 		],
 		"client":[
 			"darkdefault.arcaneconstruction.ArcaneConstructionClient"

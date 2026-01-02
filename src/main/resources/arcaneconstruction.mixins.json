@@ -1,14 +1,22 @@
 {
-	"required": true,
-	"package": "darkdefault.arcaneconstruction.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "darkdefault.arcaneconstruction.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExampleMixin",
+    "ModEntityDataSaver",
+    "PlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "BipedEntityModelMixin",
+    "PlayerEntityRendererMixin",
+    "ItemRendererMixin",
+    "ModelLoaderMixin"
+  ]
 }

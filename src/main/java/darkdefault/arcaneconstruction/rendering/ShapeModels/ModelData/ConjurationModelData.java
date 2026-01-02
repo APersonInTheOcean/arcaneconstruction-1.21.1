@@ -1,0 +1,85 @@
+package darkdefault.arcaneconstruction.rendering.ShapeModels.ModelData;
+
+import net.minecraft.client.model.*;
+
+public final class ConjurationModelData {
+
+    private ConjurationModelData() {}
+
+    public static TexturedModelData getTexturedModelData() {
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
+        ModelPartData bb_main = modelPartData.addChild("bb_main", ModelPartBuilder.create().uv(0, 45).cuboid(-3.0F, 0.0F, 14.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(6, 34).mirrored().cuboid(15.0F, 0.0F, -4.0F, 1.0F, 0.0F, 6.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(9, 36).mirrored().cuboid(14.0F, 0.0F, 2.0F, 1.0F, 0.0F, 3.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 34).cuboid(-16.0F, 0.0F, -4.0F, 1.0F, 0.0F, 6.0F, new Dilation(0.0F))
+                .uv(9, 36).mirrored().cuboid(14.0F, 0.0F, -7.0F, 1.0F, 0.0F, 3.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 41).cuboid(-15.0F, 0.0F, 2.0F, 1.0F, 0.0F, 3.0F, new Dilation(0.0F))
+                .uv(10, 37).mirrored().cuboid(13.0F, 0.0F, -9.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(11, 38).mirrored().cuboid(12.0F, 0.0F, -10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(15, 36).cuboid(-14.0F, 0.0F, 5.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(9, 41).cuboid(-15.0F, 0.0F, -7.0F, 1.0F, 0.0F, 3.0F, new Dilation(0.0F))
+                .uv(10, 37).mirrored().cuboid(11.0F, 0.0F, -12.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(18, 45).cuboid(-13.0F, 0.0F, 7.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 37).mirrored().cuboid(10.0F, 0.0F, -13.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(9, 47).cuboid(-12.0F, 0.0F, 8.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(11, 38).mirrored().cuboid(9.0F, 0.0F, -13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(16, 47).cuboid(-11.0F, 0.0F, 9.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(11, 38).mirrored().cuboid(8.0F, 0.0F, -14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(7, 56).cuboid(-10.0F, 0.0F, 10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 38).mirrored().cuboid(6.0F, 0.0F, -15.0F, 2.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(12, 56).cuboid(-9.0F, 0.0F, 11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(9, 38).mirrored().cuboid(3.0F, 0.0F, -16.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(23, 48).cuboid(-8.0F, 0.0F, 12.0F, 2.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 32).mirrored().cuboid(0.0F, 0.0F, -17.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(9, 45).cuboid(-6.0F, 0.0F, 13.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 37).mirrored().cuboid(13.0F, 0.0F, 5.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 49).cuboid(-14.0F, 0.0F, -9.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(11, 38).mirrored().cuboid(12.0F, 0.0F, 7.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(17, 56).cuboid(-13.0F, 0.0F, -10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 37).mirrored().cuboid(11.0F, 0.0F, 8.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(7, 50).cuboid(-12.0F, 0.0F, -12.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 37).mirrored().cuboid(10.0F, 0.0F, 9.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(18, 39).cuboid(-11.0F, 0.0F, -13.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(11, 38).mirrored().cuboid(9.0F, 0.0F, 10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(22, 56).cuboid(-10.0F, 0.0F, -13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(11, 38).mirrored().cuboid(8.0F, 0.0F, 11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(25, 39).cuboid(-9.0F, 0.0F, -14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 38).mirrored().cuboid(6.0F, 0.0F, 12.0F, 2.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(24, 34).cuboid(-8.0F, 0.0F, -15.0F, 2.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(9, 38).mirrored().cuboid(3.0F, 0.0F, 13.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 47).cuboid(-6.0F, 0.0F, -16.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(9, 38).mirrored().cuboid(0.0F, 0.0F, 14.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(6, 32).cuboid(-3.0F, 0.0F, -17.0F, 3.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(25, 41).cuboid(-1.0F, 0.0F, -16.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(-1, 33).cuboid(-12.0F, 0.0F, 7.0F, 12.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(18, 42).cuboid(-2.0F, 0.0F, -15.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(7, 58).mirrored().cuboid(0.0F, 0.0F, -16.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(14, 50).cuboid(-3.0F, 0.0F, -13.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(1.0F, 0.0F, -15.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 52).cuboid(-4.0F, 0.0F, -11.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(2.0F, 0.0F, -13.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(7, 53).cuboid(-5.0F, 0.0F, -9.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(3.0F, 0.0F, -11.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(14, 53).cuboid(-6.0F, 0.0F, -7.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(4.0F, 0.0F, -9.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(25, 43).cuboid(-7.0F, 0.0F, -5.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(5.0F, 0.0F, -7.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(21, 50).cuboid(-8.0F, 0.0F, -4.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(7, 58).mirrored().cuboid(6.0F, 0.0F, -5.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(21, 53).cuboid(-9.0F, 0.0F, -2.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(7.0F, 0.0F, -4.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(22, 36).cuboid(-10.0F, 0.0F, 0.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(8.0F, 0.0F, -2.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 55).cuboid(-11.0F, 0.0F, 2.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(9.0F, 0.0F, 0.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(23, 45).cuboid(-12.0F, 0.0F, 4.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(10.0F, 0.0F, 2.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(0, 58).cuboid(-13.0F, 0.0F, 6.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(10, 58).mirrored().cuboid(11.0F, 0.0F, 4.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
+                .uv(-1, 33).cuboid(0.0F, 0.0F, 7.0F, 12.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(7, 58).mirrored().cuboid(12.0F, 0.0F, 6.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F)).mirrored(false), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        return TexturedModelData.of(modelData, 128, 128);
+    }
+}
+

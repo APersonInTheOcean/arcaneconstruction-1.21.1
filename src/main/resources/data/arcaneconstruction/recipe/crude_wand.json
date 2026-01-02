@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "arcaneconstruction:arcanite"
+    },
+    "!": {
+      "item": "minecraft:stick"
+    },
+    "%": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "#",
+    "!",
+    "%"
+  ],
+  "result": {
+    "count": 1,
+    "id": "arcaneconstruction:crude_wand"
+  }
+}

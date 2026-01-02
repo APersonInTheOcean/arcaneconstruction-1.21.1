@@ -1,0 +1,87 @@
+package darkdefault.arcaneconstruction.rendering.ShapeModels.ModelData;
+
+import net.minecraft.client.model.*;
+
+public final class BreakModelData {
+
+    private BreakModelData() {}
+
+    public static TexturedModelData getTexturedModelData() {
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
+        ModelPartData bb_main = modelPartData.addChild("bb_main", ModelPartBuilder.create().uv(14, 6).cuboid(-6.0F, 0.0F, 16.0F, 6.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(14, 7).cuboid(0.0F, 0.0F, 16.0F, 6.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 22).cuboid(6.0F, 0.0F, 15.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(4, 22).cuboid(-7.0F, 0.0F, 15.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(8, 22).cuboid(-8.0F, 0.0F, 14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 22).cuboid(7.0F, 0.0F, 14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(14, 10).cuboid(9.0F, 0.0F, 12.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(14, 12).cuboid(-10.0F, 0.0F, 12.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(16, 22).cuboid(8.0F, 0.0F, 13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 22).cuboid(-9.0F, 0.0F, 13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(14, 14).cuboid(10.0F, 0.0F, 14.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(0, 23).cuboid(11.0F, 0.0F, 14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(14, 16).cuboid(-11.0F, 0.0F, 14.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(4, 23).cuboid(-12.0F, 0.0F, 14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(8, 23).cuboid(10.0F, 0.0F, 11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 23).cuboid(-11.0F, 0.0F, 11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(16, 23).cuboid(11.0F, 0.0F, 10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 23).cuboid(-12.0F, 0.0F, 10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 24).cuboid(-13.0F, 0.0F, 9.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 18).cuboid(-14.0F, 0.0F, 8.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(4, 24).cuboid(12.0F, 0.0F, 9.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(6, 18).cuboid(13.0F, 0.0F, 8.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(8, 24).cuboid(12.0F, 0.0F, 13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 24).cuboid(13.0F, 0.0F, 12.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(16, 24).cuboid(-13.0F, 0.0F, 13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 18).cuboid(-14.0F, 0.0F, 12.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 18).cuboid(14.0F, 0.0F, 10.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(24, 19).cuboid(15.0F, 0.0F, 10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(18, 18).cuboid(-15.0F, 0.0F, 10.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(20, 24).cuboid(-16.0F, 0.0F, 10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 20).cuboid(14.0F, 0.0F, 7.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 21).cuboid(-15.0F, 0.0F, 7.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 22).cuboid(-16.0F, 0.0F, 6.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 23).cuboid(15.0F, 0.0F, 6.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 0).cuboid(16.0F, 0.0F, 0.0F, 1.0F, 0.0F, 6.0F, new Dilation(0.0F))
+                .uv(0, 6).cuboid(-17.0F, 0.0F, 0.0F, 1.0F, 0.0F, 6.0F, new Dilation(0.0F))
+                .uv(0, 12).cuboid(16.0F, 0.0F, -6.0F, 1.0F, 0.0F, 6.0F, new Dilation(0.0F))
+                .uv(14, 0).cuboid(-17.0F, 0.0F, -6.0F, 1.0F, 0.0F, 6.0F, new Dilation(0.0F))
+                .uv(24, 24).cuboid(-16.0F, 0.0F, -7.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 20).cuboid(-14.0F, 0.0F, -10.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(0, 25).cuboid(-15.0F, 0.0F, -8.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(4, 25).cuboid(-13.0F, 0.0F, -10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(8, 25).cuboid(-12.0F, 0.0F, -11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 25).cuboid(-11.0F, 0.0F, -12.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(6, 20).cuboid(-10.0F, 0.0F, -14.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(16, 25).cuboid(-9.0F, 0.0F, -14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 25).cuboid(-8.0F, 0.0F, -15.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 25).cuboid(-7.0F, 0.0F, -16.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(14, 8).cuboid(-6.0F, 0.0F, -17.0F, 6.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 10).cuboid(-11.0F, 0.0F, -16.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(0, 26).cuboid(-12.0F, 0.0F, -15.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(4, 26).cuboid(-13.0F, 0.0F, -14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(8, 26).cuboid(-14.0F, 0.0F, -13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 20).cuboid(-15.0F, 0.0F, -12.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(26, 10).cuboid(-16.0F, 0.0F, -11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(14, 9).cuboid(0.0F, 0.0F, -17.0F, 6.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(26, 11).cuboid(6.0F, 0.0F, -16.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(12, 26).cuboid(7.0F, 0.0F, -15.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(26, 12).cuboid(8.0F, 0.0F, -14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 12).cuboid(9.0F, 0.0F, -14.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(26, 13).cuboid(10.0F, 0.0F, -12.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(26, 14).cuboid(11.0F, 0.0F, -11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(26, 15).cuboid(12.0F, 0.0F, -10.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 14).cuboid(13.0F, 0.0F, -10.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(16, 26).cuboid(14.0F, 0.0F, -8.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(26, 16).cuboid(15.0F, 0.0F, -7.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(26, 17).cuboid(15.0F, 0.0F, -11.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(20, 16).cuboid(14.0F, 0.0F, -12.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
+                .uv(20, 26).cuboid(13.0F, 0.0F, -13.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(24, 26).cuboid(12.0F, 0.0F, -14.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(0, 27).cuboid(11.0F, 0.0F, -15.0F, 1.0F, 0.0F, 1.0F, new Dilation(0.0F))
+                .uv(18, 20).cuboid(10.0F, 0.0F, -16.0F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        return TexturedModelData.of(modelData, 128, 128);
+    }
+}
+

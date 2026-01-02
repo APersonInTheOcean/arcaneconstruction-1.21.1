@@ -1,0 +1,12 @@
+{
+  "item.arcaneconstruction.crude_wand": "Crude Wand",
+  "item.arcaneconstruction.arcanite": "Arcanite",
+  "block.arcaneconstruction.arcanite_block": "Arcanite Block",
+  "key.category.arcaneconstruction": "Arcane Construction",
+  "key.arcaneconstruction.cast": "Cast Spell",
+  "key.arcaneconstruction.conjuration": "Conjuration",
+  "key.arcaneconstruction.invocation": "Invocation",
+  "key.arcaneconstruction.evocation": "Evocation",
+  "key.arcaneconstruction.summation": "Summation"
+
+}
