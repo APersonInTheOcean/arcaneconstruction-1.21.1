@@ -14,6 +14,10 @@ import darkdefault.arcaneconstruction.util.SigilData;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +28,10 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,7 +78,16 @@ public class ArcaneConstruction implements ModInitializer {
 	public void onInitialize() {
 
 		ServerTickEvents.END_SERVER_TICK.register(ArcaneConstruction::onServerTick);
+		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+			if (!world.isClient()
+					&& Break.isMultiBreakActive((IEntityDataSaver)player)
+			) {
 
+				Break.setMiningSide((IEntityDataSaver)player, direction);
+			}
+			return ActionResult.PASS;
+		});
+		PlayerBlockBreakEvents.AFTER.register(ArcaneConstruction::onPlayerBlockBroken);
 
         ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
@@ -106,6 +122,14 @@ public class ArcaneConstruction implements ModInitializer {
 
 
 
+
+	}
+	public static void onPlayerBlockBroken(World world, PlayerEntity p, BlockPos pos, BlockState state, BlockEntity blockEntity){
+
+		IEntityDataSaver player = (IEntityDataSaver) p;
+		if(Break.isMultiBreakActive(player)){
+			Break.MultiBreakTriggered(world,p,pos,state,blockEntity);
+		}
 
 	}
 
