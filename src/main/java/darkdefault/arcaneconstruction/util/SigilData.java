@@ -49,17 +49,7 @@ public class SigilData {
 
 
 
-    public static void setMaxMana(IEntityDataSaver player,int amount){
-        NbtCompound persistentData;
-        if (player.getPersistentData() == null){
-            persistentData = new NbtCompound();
-//            player.getPersistentData().put(ArcaneConstruction.manaNbtKey)
-        }
-        else {
-            persistentData = player.getPersistentData();
-        }
-        persistentData.putInt(ArcaneConstruction.maxManaNbtKey, amount);
-    }
+
     public static void setSigilCooldown(IEntityDataSaver player,int amount){
         NbtCompound persistentData;
         if (player.getPersistentData() == null){
@@ -131,6 +121,17 @@ public class SigilData {
 
     }
 
+    public static void setMaxMana(IEntityDataSaver player,int amount){
+        NbtCompound persistentData;
+        if (player.getPersistentData() == null){
+            persistentData = new NbtCompound();
+//            player.getPersistentData().put(ArcaneConstruction.manaNbtKey)
+        }
+        else {
+            persistentData = player.getPersistentData();
+        }
+        persistentData.putInt(ArcaneConstruction.maxManaNbtKey, amount);
+    }
     public static int getMaxMana(IEntityDataSaver player){
         NbtCompound persistentData;
         if (player.getPersistentData() == null){
