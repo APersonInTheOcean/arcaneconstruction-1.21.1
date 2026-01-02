@@ -1,9 +1,20 @@
 package darkdefault.arcaneconstruction.spells.SpellCrafting.Shapes;
 
+import darkdefault.arcaneconstruction.ArcaneConstruction;
 import darkdefault.arcaneconstruction.entity.SpellProjectileEntity;
+import darkdefault.arcaneconstruction.rendering.ShapeModels.ModelData.BreakModelData;
+import darkdefault.arcaneconstruction.rendering.ShapeModels.ModelData.EffectModelData;
+import darkdefault.arcaneconstruction.rendering.ShapeModels.SigilModel;
+import darkdefault.arcaneconstruction.rendering.ShapeModels.SigilModels.BreakModel;
+import darkdefault.arcaneconstruction.rendering.ShapeModels.SigilModels.EffectModel;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.*;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.Augments.Duration;
 import darkdefault.arcaneconstruction.spells.SpellCrafting.Augments.Power;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -11,18 +22,36 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.EntityEffectParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.Direction;
 
-public class Effect extends DefaultModelShape {
+public class Effect extends SimpleShape {
 
     private static final int baseDuration = 1200;
     private static final int baseAmplifier = 0;
 
 
+    @Environment(EnvType.CLIENT)
+    @Override
+    public SigilModel getSigilModel(ModelPart root) {
+        return new EffectModel(root);
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public EntityModelLayer getModelLayer() {
+        return new EntityModelLayer(Identifier.of(ArcaneConstruction.MOD_ID, getName().toLowerCase()+ "model"), "main");
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public EntityModelLayerRegistry.TexturedModelDataProvider getModelDataSupplier() {
+        return EffectModelData::getTexturedModelData;
+    }
     @Override
     public void onBlockHit(BlockHitResult blockHitResult, Spell spell, SpellProjectileEntity entity, SpellModule module) {
 
@@ -153,6 +182,12 @@ public class Effect extends DefaultModelShape {
             }
             else if(currentModule.getShape() instanceof Break){
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE,duration,power));
+                addedEffect =true;
+
+
+            }
+            else if(currentModule.getShape() instanceof Heal){
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,duration,power));
                 addedEffect =true;
 
 
